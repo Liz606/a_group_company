@@ -1,0 +1,288 @@
+.blacklogText{
+    font-family: FL;
+    font-size: 32px;
+}
+/**
+ * 翻页效果
+ */
+.box-cont{
+        width: 100%;
+    height: 100%;
+}
+.anim {
+  /* Firefox */
+  /* Safari å’Œ Chrome */
+  animation: roll 1s ease-in-out 0s 1 normal forwards;
+  -webkit-animation: roll 1s ease-in-out 0s 1 normal forwards;
+  transform-origin: 50% 0%;
+  -webkit-transform-origin: 50% 0%;
+}
+@-webkit-keyframes roll {
+  0% {
+    -webkit-transform: perspective(500px) rotateX(25deg);
+  }
+  100% {
+    -webkit-transform: perspective(500px) rotateX(0deg);
+  }
+}
+
+/**
+ * 从下滑入
+ */
+
+.block .menuMask{
+    -webkit-animation: menuMaskAnim 0.5s linear normal  both;
+    animation: menuMaskAnim 0.5s linear normal  both;
+}
+@-webkit-keyframes menuMaskAnim {
+    0% {
+        left: -100%;
+        opacity: 0;
+    }
+}
+@keyframes menuMaskAnim {
+    0% {
+        left: -100%;
+        opacity: 0;
+    }
+}
+.enterAnm .brandIconBox .brand1 {
+    -webkit-animation: brandAnim1 0.8s ease-in-out 0.5s 1 normal  both;
+    animation: brandAnim1 0.8s ease-in-out 0.5s 1 normal  both;
+}
+.enterAnm .brandIconBox .brand2 {
+    -webkit-animation: brandAnim2 0.8s ease-in-out 0.8s 1 normal both;
+    animation: brandAnim2 0.8s ease-in-out 0.8s 1 normal both;
+}
+.enterAnm .brand3 {
+    -webkit-animation: brandAnim3 0.8s ease-in-out 1s 1 normal  both;
+    animation: brandAnim3 0.8s ease-in-out 1s 1 normal  both;
+}
+@-webkit-keyframes brandAnim1 {
+    0% {
+        top: 50%;
+        opacity: 0;
+    }
+}
+@keyframes brandAnim1 {
+    0% {
+        top: 50%;
+        opacity: 0;
+    }
+}
+@-webkit-keyframes brandAnim2 {
+    0% {
+        bottom: -50%;
+        opacity: 0;
+    }
+}
+@keyframes brandAnim2 {
+    0% {
+        bottom: -50%;
+        opacity: 0;
+    }
+}
+@-webkit-keyframes brandAnim3 {
+    0% {
+        bottom: -50%;
+        opacity: 0;
+    }
+}
+@keyframes brandAnim3 {
+    0% {
+        bottom: -50%;
+        opacity: 0;
+    }
+}
+.enterAnm .newAin1 {
+    -webkit-animation: newAnim1 0.8s ease-in-out 0.2s 1 normal  both;
+    animation: newAnim1 0.8s ease-in-out 0.2s 1 normal  both;
+}
+.enterAnm .newAin2 {
+    -webkit-animation: newAnim2 0.8s ease-in-out .6s 1 normal both;
+    animation: newAnim2 0.8s ease-in-out .6s 1 normal both;
+}
+@-webkit-keyframes newAnim1 {
+    0% {
+        top: 90%;
+        opacity: 0;
+    }
+}
+@keyframes newAnim1 {
+    0% {
+        top: 90%;
+        opacity: 0;
+    }
+}
+@-webkit-keyframes newAnim2 {
+    0% {
+        bottom: -50%;
+        opacity: 0;
+    }
+}
+@keyframes newAnim2 {
+    0% {
+        bottom: -50%;
+        opacity: 0;
+    }
+}
+.enterAnm .brandIconBox .lookbook1 {
+    -webkit-animation: lookbookAnim1 0.8s ease-in-out 0.2s 1 normal  both;
+    animation: lookbookAnim1 0.8s ease-in-out 0.2s 1 normal  both;
+}
+.enterAnm .brandIconBox .lookbook2 {
+    -webkit-animation: lookbookAnim2 0.8s ease-in-out 0.5s 1 normal both;
+    animation: lookbookAnim2 0.8s ease-in-out 0.5s 1 normal both;
+}
+.enterAnm .lookbook3 {
+    -webkit-animation: lookbookAnim3 0.8s ease-in-out .8s 1 normal  both;
+    animation: lookbookAnim3 0.8s ease-in-out .8s 1 normal  both;
+}
+@-webkit-keyframes lookbookAnim1 {
+    0% {
+        top: 50%;
+        opacity: 0;
+    }
+}
+@keyframes lookbookAnim1 {
+    0% {
+        top: 50%;
+        opacity: 0;
+    }
+}
+@-webkit-keyframes lookbookAnim2 {
+    0% {
+        bottom: -50%;
+        opacity: 0;
+    }
+}
+@keyframes lookbookAnim2 {
+    0% {
+        bottom: -50%;
+        opacity: 0;
+    }
+}
+@-webkit-keyframes lookbookAnim3 {
+    0% {
+        bottom: -50%;
+        opacity: 0;
+    }
+}
+@keyframes lookbookAnim3 {
+    0% {
+        bottom: -50%;
+        opacity: 0;
+    }
+}
+.enterAnm .join1 {
+    -webkit-animation: joinAnim1 0.8s ease-in-out 0.5s 1 normal  both;
+    animation: joinAnim1 0.8s ease-in-out 0.5s 1 normal  both;
+}
+.enterAnm .middle .join2 {
+    -webkit-animation: joinAnim2 0.8s ease-in-out .8s 1 normal both;
+    animation: joinAnim2 0.8s ease-in-out .8s 1 normal both;
+}
+@-webkit-keyframes joinAnim1 {
+    0% {
+        top: 100%;
+        opacity: 0;
+    }
+}
+@keyframes joinAnim1 {
+    0% {
+        top: 100%;
+        opacity: 0;
+    }
+}
+@-webkit-keyframes joinAnim2 {
+    0% {
+        top: 150%;
+        opacity: 0;
+    }
+}
+@keyframes joinAnim2 {
+    0% {
+        top: 150%;
+        opacity: 0;
+    }
+}
+.enterAnm .store1 {
+    -webkit-animation: storeAnim1 0.8s ease-in-out 0.2s 1 normal  both;
+    animation: storeAnim1 0.8s ease-in-out 0.2s 1 normal  both;
+}
+.enterAnm .store2 {
+    -webkit-animation: storeAnim2 0.8s ease-in-out .6s 1 normal both;
+    animation: storeAnim2 0.8s ease-in-out .6s 1 normal both;
+}
+@-webkit-keyframes storeAnim1 {
+    0% {
+        top: 90%;
+        opacity: 0;
+    }
+}
+@keyframes storeAnim1 {
+    0% {
+        top: 90%;
+        opacity: 0;
+    }
+}
+@-webkit-keyframes storeAnim2 {
+    0% {
+        bottom: -50%;
+        opacity: 0;
+    }
+}
+@keyframes storeAnim2 {
+    0% {
+        bottom: -50%;
+        opacity: 0;
+    }
+}
+.enterAnm .contact1 {
+    -webkit-animation: contactAnim1 0.8s ease-in-out 0.2s 1 normal  both;
+    animation: contactAnim1 0.8s ease-in-out 0.2s 1 normal  both;
+}
+.enterAnm .contact2 {
+    -webkit-animation: contactAnim2 0.8s ease-in-out .5s 1 normal both;
+    animation: contactAnim2 0.8s ease-in-out .5s 1 normal both;
+}
+.enterAnm .contact3 {
+    -webkit-animation: contactAnim3 0.8s ease-in-out 0.8s 1 normal  both;
+    animation: contactAnim3 0.8s ease-in-out 0.8s 1 normal  both;
+}
+@-webkit-keyframes contactAnim1 {
+    0% {
+        top: 50%;
+        opacity: 0;
+    }
+}
+@keyframes contactAnim1 {
+    0% {
+        top: 50%;
+        opacity: 0;
+    }
+}
+@-webkit-keyframes contactAnim2 {
+    0% {
+        bottom: -50%;
+        opacity: 0;
+    }
+}
+@keyframes contactAnim2 {
+    0% {
+        bottom: -50%;
+        opacity: 0;
+    }
+}
+@-webkit-keyframes contactAnim3 {
+    0% {
+        bottom: -50%;
+        opacity: 0;
+    }
+}
+@keyframes contactAnim3 {
+    0% {
+        bottom: -50%;
+        opacity: 0;
+    }
+}

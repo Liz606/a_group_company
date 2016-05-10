@@ -1,0 +1,73 @@
+#divselect1,#divselect2,#divselect3 {
+    width: 186px;
+    margin: 0px auto;
+    position: relative;
+    padding:10px;
+    z-index: 10000;
+    cursor: pointer;
+}
+#divselect4 {
+    display: inline-block;
+    cursor: pointer;
+}
+#divselect1 cite ,#divselect2 cite ,#divselect3 cite {
+    width: 150px;
+    height: 24px;
+    line-height: 24px;
+    display: block;
+    color: #807a62;
+    font-style: normal;
+    text-align: center;
+    padding-left: 4px;
+    padding-right: 30px;
+    background: url('../images/selectArr.png') no-repeat 95% center;
+}
+ #divselect4 cite {
+    width: 150px;
+    height: 24px;
+    line-height: 24px;
+    display: block;
+    color: #807a62;
+    font-style: normal;
+    text-align: center;
+    padding-left: 4px;
+    padding-right: 30px;
+    background: url('../images/selectArr.png') no-repeat 95% center;
+}
+#divselect1 ul,#divselect2 ul,#divselect3 ul{
+    width: 120px;
+    background-color: #ffffff;
+    position: absolute;
+    height: auto!important;
+    z-index: 20000;
+    margin-top: -1px;
+    display: none;
+}
+#divselect4 ul {
+    width: 120px;
+    background-color: #ffffff;
+    position: absolute;
+    height: auto!important;
+    z-index: 20000;
+    margin-top: -1px;
+    display: none;
+}
+#divselect1 ul li,#divselect2 ul li,#divselect3 ul li,#divselect4 ul li {
+    height: 24px;
+    line-height: 24px;
+        text-align: center;
+}
+
+#divselect1 ul li a ,#divselect2 ul li a ,#divselect3 ul li a ,#divselect4 ul li a {
+    display: block;
+    height: 24px;
+    color: #333333;
+    text-decoration: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#divselect1 ul li a:hover ,#divselect2 ul li a:hover ,#divselect3 ul li a:hover ,#divselect4 ul li a:hover {
+    background-color: #d7000f;
+    color: #ffffff;
+}
