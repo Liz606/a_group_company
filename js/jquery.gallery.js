@@ -323,11 +323,12 @@
 			
 			this._setItems();
 			var index=this.$currentItm.attr('index');
-					$.each(this.$textBox,function(){
-						$(this).css({'top':'100%'});
-					})
-					$(this.$textBox[index]).css({'top':'50%'});
-					//,'height':'50%'
+			var textB=$('.textBox');
+                 for (var i = 0; i < textB.length; i++) {
+                     $(textB[i]).removeClass('B0');
+                 };
+                 $(textB[index]).addClass('B0');
+			 
 			if( !this.supportTrans )
 				this.$currentItm.addClass('dg-center');
 			
