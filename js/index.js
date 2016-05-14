@@ -1,7 +1,9 @@
+
 //页面加载完之后执行
 jQuery(function($) {
     
     var T,H,W;
+    var Harr=[];
     var runningBox='#sliderBox1_1';
     /*load进入主页*/
     $('.loadEnter')
@@ -9,8 +11,19 @@ jQuery(function($) {
         $('#container').removeClass('none').addClass('block');
         $('#loading').removeClass('block').addClass('none');
         if ($('#container').css('display')=='block') {
-                T=parseInt($('.textBox').css('top'));//页面显示后获取宽高
-                H=parseInt($('.textBox').css('height'));
+                 T=parseInt($('.textBox').css('top'));//页面显示后获取宽高
+                 H=parseInt($('.textBox').parent().css('height'));
+                 for (var i = 0; i < 3; i++) {
+                     Harr[i]=parseInt($($('.textBox')[i]).outerHeight());
+                     if (Harr[i]>H-104) {
+                        Harr[i]=H-104;
+                     };
+                 };
+                var textB=$('.textBox');
+                 for (var i = 0; i < textB.length; i++) {
+                     $(textB[i]).css('bottom',-Harr[i]+"px");
+                     $(textB[i]).css('height',Harr[i]+"px");
+                 };
                 W=$(window).width();
                 lookInit();
                 mousNow = 0;
@@ -53,8 +66,6 @@ jQuery(function($) {
         var navthis=$(this);
         navthis.click(function() {
             var toId=navthis.attr('href');
-            console.log();
-            console.log($(window).scrollTop());
             menuNav.removeClass('navshow');
             menuBefore.removeClass('block').addClass('none');
              $("body,html").animate({ scrollTop:$(toId).offset().top}, 1000, function () {
@@ -65,39 +76,17 @@ jQuery(function($) {
                         });
         })
     })
+    var homea=$('.homeBtn>p>a');
+    $.each(homea,function() {
+         $(this).click(function() {
+            $("body,html").animate({ scrollTop:$('#lookbook').offset().top}, 1000);
+         })
+    })
 /*
  *brand slider
  */
         $('#dg-container').gallery();
             var textP=$('.textP');
-            $.each(textP,function(){
-                $(this).mouseover(function(){
-                    mousBool=true;
-                    var A=H+T;
-                    var that=this;
-                    $(this).scroll(function(e) {
-                        var T2=parseInt($(this).parent().css('top'));
-                        var H2=parseInt($(this).parent().css('height'));
-                        $(this).parent().removeClass('textTop');
-                        var s=$(this).scrollTop();
-                        var topNew=null;
-                        var heightNew=null;
-                        if ((T-s)>=100) {
-                            topNew=T-s+'px';
-                            heightNew=A-parseInt(topNew)+'px';
-                        }else{
-                            topNew=T2+'px';
-                            heightNew=H2+'px';
-                        }
-                        $(this).parent().css('top',topNew);
-                        $(this).parent().css('height',heightNew);
-                    });
-                });
-                $(this).mouseout(function(){
-                    mousBool=false;
-                    $(this).parent().addClass('textTop');
-                })
-            })
 /**
  * lookbook
  */
@@ -226,12 +215,9 @@ changeMenu('.nav li:nth-child(9)>a','联系方式');
 function changeMenu(obj,str) {
     var text=$(obj).text();
     $(obj).mouseover(function(){
-        console.log('shubyiru');
         $(obj).text(str);
     });
-
     $(obj).mouseout(function(){
-        console.log('shubyiru');
         $(obj).text(text);
     });
 };
