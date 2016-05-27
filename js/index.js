@@ -8,6 +8,9 @@ jQuery(function($) {
     /*load进入主页*/
     $('.loadEnter')
     .click(function(){
+        if (imgCorrt) {
+            return;
+        }
         $('#container').removeClass('none').addClass('block');
         $('#loading').removeClass('block').addClass('none');
         if ($('#container').css('display')=='block') {
