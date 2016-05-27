@@ -38,7 +38,7 @@
 	    border: 2px solid transparent;
 	}
 	
-	.loadEnter:hover {
+	.loadEnterHover:hover {
 	    border: 2px solid #d05d3f;
 	    cursor: pointer;
 	}
