@@ -1,6 +1,10 @@
  function init (_super,W) {
+    var logoLeft=$('.logoLeft');
+    var logoRight=$('.logoRight');
+    var menu=$('.menu');
 	var animated = false;
     var slidstate=true;
+    var autoState=true;
 	var timer;
     var _const=$(_super).children().length;
     var point=4;
@@ -31,10 +35,14 @@
         $(this).click(function(){
             $('#blackMaskAll').removeClass('none').addClass('block');
             $(this).addClass('currtBigLook');
-            var thisSrc=$(this).css('background-image');
-            $('#lookOnly').css('background-image',thisSrc);
+            var thisSrc=$(this).attr('data-bigurl');
+            $('#lookOnly').attr('src',thisSrc);
             animated=false;
             slidstate=false;
+            logoLeft.removeClass('block').addClass('none');
+            logoRight.removeClass('block').addClass('none');
+            menu.removeClass('block').addClass('none');
+            maskBool = true;
         });
     })
 	
@@ -69,21 +77,25 @@
             console.log('helloprv');
             slidstate=true;
             if (Arrow_l(sliderWidth)) {
-            var prv=Children.filter('.currtBigLook').removeClass('currtBigLook');
-            var now=null;
-            if (prv.attr('index')==_const) {
-                now=Children.last();
-            }else{
-                now=prv.prev();
-            }
-            var thisSrc=now.css('background-image');
-            now.addClass('currtBigLook');
-            $('#lookOnly').css('background-image',thisSrc);
+                var prv=Children.filter('.currtBigLook').removeClass('currtBigLook');
+                var now;
+                if (prv.attr('index')==_const) {
+                    now=Children.last();
+                }else{
+                    now=prv.prev();
+                }
+
+                var thisSrc=now.attr('data-bigurl');
+
+                now.addClass('currtBigLook');
+                $('#lookOnly').attr('src',thisSrc);
             }
             slidstate=false;
-            
-            
         };
+
+            dg_prevArr.removeClass('disable');
+            dg_prevArr1.removeClass('disable');
+
     }
     function prevClick(num){
         if ($('#blackMaskAll').hasClass('block')) {
@@ -97,17 +109,19 @@
             console.log('hellonext');
             var nex=Children.filter('.currtBigLook').removeClass('currtBigLook');
             var now=null;
-            if (nex.attr('index')==1) {
+            if (nex.attr('index')==13) {
                 now=Children.first();
             }else{
                 now=nex.next();
             }
-            var thisSrc=now.css('background-image');
             now.addClass('currtBigLook');
-            $('#lookOnly').css('background-image',thisSrc);
+             var thisSrc=now.attr('data-bigurl');
+            $('#lookOnly').attr('src',thisSrc);
             };
             slidstate=false;
             };
+             dg_nextArr.removeClass('disable');
+            dg_nextArr1.removeClass('disable');
     }
     //pageMove
     function pageMove(e){
@@ -143,6 +157,11 @@
     }   
     //向左滚动一页
     function Arrow_r(sw) {
+        console.log('向左滚动一页');
+    if (Children.eq(Children.length-4).css('left')=='0px') {
+        autoState=false;
+        return false;
+    };
     if (slidstate) {
         if (!animated) {
              index++;
@@ -150,6 +169,7 @@
                 index=0;
             }
             animate(-sw);
+           
             return true;
          }else{
             return false;
@@ -158,6 +178,11 @@
     }
     //向右滚动一页
     function Arrow_l(sw) {
+        console.log('向右滚动一页');
+    if (Children.eq(0).css('left')=='0px') {
+        autoState=true;
+        return false;
+    };    
     if (slidstate) {
         if (!animated) {
              index--;
@@ -174,7 +199,11 @@
     //自动向左滚动
     function autoPlay(sw) {
             timer = setInterval(function() {
-                Arrow_r(sw);
+                 if (autoState) {
+                    Arrow_r(sw);
+                }else{
+                    Arrow_l(sw);
+                }  
             }, 5000)
     }
     //停止自动滚动
@@ -197,17 +226,13 @@
         $.each(Children,function () {        
             leftCorrt=parseInt(this.style.left);
             left = leftCorrt + wid;
-            if (wid>0) {
-                if (left>(_const-(p+1))*sliderWidth) {
-                    left=wid+leftCorrt-(_const)*sliderWidth;
-                    $(this).css('z-index','-888');
-                }
-           }else{
-                if (left<-(_const-(point+1))*sliderWidth) {
-                    left=wid+leftCorrt+(_const)*sliderWidth;
-                    $(this).css('z-index','-888');
-                }
-           }
+            if ($(this).attr('index')==Children.eq(Children.length-4).attr('index')&&left==0) {
+                dg_prevArr.addClass('disable');
+                dg_prevArr1.addClass('disable');
+            }else  if ($(this).attr('index')==Children.eq(0).attr('index')&&left==0) {
+                dg_nextArr.addClass('disable');
+                dg_nextArr1.addClass('disable');
+            };  
             //移动
             $(this).animate({left:left},{quequ:false,complete:function(){
                 stat++;

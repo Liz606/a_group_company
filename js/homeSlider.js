@@ -1,7 +1,7 @@
 full3DSlider('#home>.box-cont>.slider-nu>li','#home>.box-cont>.home',"#home>.box-cont>.slider-an",true,true,'');
-full3DSlider(' ','#storeHome>.home',"#storeHome>.slider-an",false,false,'#storeHome>.slider-nu>span');
-function full3DSlider(sliderBtn,sliderImg,sliderAn,anim,Auto,Arrs){
 
+function full3DSlider(sliderBtn,sliderImg,sliderAn,anim,Auto,Arrs){
+console.log(sliderImg);
 	 var sliderBtn=$(sliderBtn);
 	 var sliderImg=$(sliderImg);
 	 var imgLength=sliderImg.length;

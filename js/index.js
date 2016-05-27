@@ -40,14 +40,14 @@ jQuery(function($) {
             menuBefore.removeClass('block').addClass('none');
             $('#home>.box-cont>.home').trigger('3Drunstate');
             $('#storeHome>.home').trigger('3Drunstate');
-            $(runningBox).trigger('runstate');
+            $('#slider').children('ul').trigger('runstate');
             maskBool = false;
         }else{
             menuNav.removeClass('none').addClass('navshow block');
             menuBefore.removeClass('none').addClass('block');
             $('#home>.box-cont>.home').trigger('3Dstopstate');
             $('#storeHome>.home').trigger('3Dstopstate');
-            $(runningBox).trigger('stopstate');
+            $('#slider').children('ul').trigger('stopstate');
             maskBool = true;
         }
     });
@@ -57,7 +57,7 @@ jQuery(function($) {
         menuBefore.removeClass('block').addClass('none');
         $('#home>.box-cont>.home').trigger('3Drunstate');
         $('#storeHome>.home').trigger('3Drunstate');
-        $(runningBox).trigger('runstate');
+        $('#slider').children('ul').trigger('runstate');
         maskBool = false;
     })
     var navList=$('.navBox .nav li a');
@@ -68,10 +68,14 @@ jQuery(function($) {
             var toId=navthis.attr('href');
             menuNav.removeClass('navshow');
             menuBefore.removeClass('block').addClass('none');
+            if (toId=='#product') {
+                toId='#lookbook';
+                $('#divselect4 ul li a').eq(1).click();
+            };
              $("body,html").animate({ scrollTop:$(toId).offset().top}, 1000, function () {
                             $('#home>.box-cont>.home').trigger('3Drunstate');
                             $('#storeHome>.home').trigger('3Drunstate');
-                            $(runningBox).trigger('runstate');
+                            $('#slider').children('ul').trigger('runstate');
                             maskBool = false;
                         });
         })
@@ -90,17 +94,10 @@ jQuery(function($) {
 /**
  * lookbook
  */
+
 function lookInit() {
-    //初始化8个slider
-    for (var i = 1; i <=2; i++) {
-        for (var j = 1; j <=4; j++) {
-            init('#sliderBox'+i+'_'+j,W);
-            // console.log('#sliderBox'+i+'_'+j);
-            $('#sliderBox'+i+'_'+j).trigger('stopstate');
-        };
-    };
     //自定义事件监听，运行状态
-    $('#sliderBox1_1').trigger('runstate');
+    init($('#sliderBox1_1'),W);
 
     var brandSelect=$('#divselect4 cite');
     
@@ -110,6 +107,8 @@ function lookInit() {
     $.each(lookList,function(){//当looklist被点击，显示对应slider
         var that=this;
         $(that).click(function(){
+            console.log('ajax'+$(that));
+           
             $.each(lookList,function(){
                 $(this).removeClass('active');
             })
@@ -120,6 +119,8 @@ function lookInit() {
             runningBox='#sliderBox'+sliderBox;
             constIndex=$(runningBox).children().length;
             console.log(sliderBox,constIndex);
+             lookGetFile(runningBox);
+
             $.each(lookbookImgsList,function(){
                 $(this).removeClass('block').addClass('none').trigger('stopstate');
             })
@@ -127,22 +128,22 @@ function lookInit() {
             
         })
     })
-	$("#divselect4 cite").click(function(){//当lookbook select被点击，显示 opations
-		var ul = $("#divselect4 ul");
-		if(ul.css("display")=="none"){
-			ul.removeClass('none').addClass('block');
-		}else{
-			ul.removeClass('block').addClass('none');
-		}
+    $("#divselect4 cite").click(function(){//当lookbook select被点击，显示 opations
+        var ul = $("#divselect4 ul");
+        if(ul.css("display")=="none"){
+            ul.removeClass('none').addClass('block');
+        }else{
+            ul.removeClass('block').addClass('none');
+        }
 
-	});
-	$("#divselect4 ul li a").click(function(){//当lookbook select opation被点击，显示对应slider
-		var txt = $(this).text();
-		$("#divselect4 cite").html(txt);
-		var value = $(this).attr("selectid");
-		$("#divselect4 cite").attr("selectid",value);
-		$("#divselect4 ul").removeClass('block').addClass('none');
-		lookListValue=lookList.filter('.active').attr('index');
+    });
+    $("#divselect4 ul li a").click(function(){//当lookbook select opation被点击，显示对应slider
+        var txt = $(this).text();
+        $("#divselect4 cite").html(txt);
+        var value = $(this).attr("selectid");
+        $("#divselect4 cite").attr("selectid",value);
+        $("#divselect4 ul").removeClass('block').addClass('none');
+        lookListValue=lookList.filter('.active').attr('index');
         sliderBox=brandSelect.attr('selectid')+'_'+lookListValue;
         if (brandSelect.attr('selectid')==1) {
             $('.brandIcon').attr('src','images/lookbook.png');
@@ -153,17 +154,56 @@ function lookInit() {
             $(this).removeClass('block').addClass('none').trigger('stopstate');
         })
         runningBox='#sliderBox'+sliderBox;
+        
+        lookGetFile(runningBox);
         $(runningBox).removeClass('none').addClass('block').trigger('runstate');
-	});
+    });
+
+    for (var i = 1; i < 5; i++) {
+        $('#divselect'+i+' ul').mouseleave(function(){
+            $(this).removeClass('block').addClass('none')
+        });
+    };
+
+   
     //lookbook的遮罩关闭按钮
     $('#maskX').click(function(){
         nowslider=$('#slider').children().filter('.lookbookImgs').filter('.block');
         $('#slider').children().filter('.lookbookImgs').filter('.block').children().filter('.currtBigLook').removeClass('currtBigLook');
         nowslider.trigger('runstate');
         $('#blackMaskAll').removeClass('block').addClass('none');
-
+        logoLeft.removeClass('none').addClass('block');
+        logoRight.removeClass('none').addClass('block');
+        menu.removeClass('none').addClass('block');
+        maskBool = false;
     })
+    //异步请求关键代码
+    function lookGetFile(runningBox){
+        if ($(runningBox).children().length<=0) {
+                 $.ajax({
+                   type: "GET",
+                   url: $(runningBox).data('url'),
+                   dataType: "json",
+                   success: function(date){
+                     console.log( "Data Saved: " + date);
+                     var small=date.small;
+                     var big=date.big;
+                         for (var i = 0,len = small.length; i < len; i++) {
+                             $('<li>').css('background-image','url('+small[i]+')')
+                             .addClass('lookbookImg')
+                             .attr('data-bigurl',big[i])
+                             .appendTo($(runningBox));
+                        };
+                        init($(runningBox),W);
+                       },
+                       err:function() {
+                            console.log( "出错啦~~~~" );
+                       }
+                   })
+            }
+    }
 };
+
 /**
  * Liz-scroll 
  * 
@@ -201,17 +241,13 @@ $.fn.scrollUnique = function() {
 };
 
 $('.Liz-scroll').scrollUnique();
-});
 
-changeMenu('.nav li:nth-child(1)>a','首页');
-changeMenu('.nav li:nth-child(2)>a','品牌');     
-changeMenu('.nav li:nth-child(3)>a','产品');
-changeMenu('.nav li:nth-child(4)>a','大片');
-changeMenu('.nav li:nth-child(5)>a','新闻');
-changeMenu('.nav li:nth-child(6)>a','视频');
-changeMenu('.nav li:nth-child(7)>a','加盟');
-changeMenu('.nav li:nth-child(8)>a','店铺');
-changeMenu('.nav li:nth-child(9)>a','联系方式');
+
+var navListText=['首页','品牌','产品','大片','新闻','视频','加盟','店铺','联系方式'];
+var navA=$('.nav li a');
+for (var i = 0 ,len=navListText.length; i < len; i++) {
+    changeMenu(navA[i],navListText[i]);
+};
 function changeMenu(obj,str) {
     var text=$(obj).text();
     $(obj).mouseover(function(){
@@ -221,3 +257,87 @@ function changeMenu(obj,str) {
         $(obj).text(text);
     });
 };
+var logoLeft=$('.logoLeft');
+var logoRight=$('.logoRight');
+var menu=$('.menu');
+
+$('#divselect3>ul>li>a').click(function(){
+    var realUrl=$(this).data('url');
+    $('#divselect3').children('cite').attr('data-url',realUrl);//设置文件路径
+     $('#storeHome>.slider-nu>.storeName').text($('#divselect3').children('cite').text());
+    // 异步加载并初始化
+    $('.store1').addClass('none').removeClass('block');//隐藏store图标
+    $("#storeHome").removeClass('none').addClass('block').addClass('roll-f2');//展示页进入
+    storeGetFile();
+
+    $('.storeList').removeClass('block').addClass('none');
+    $('.storeClose').removeClass('none').addClass('block');
+    logoLeft.removeClass('block').addClass('none');
+    logoRight.removeClass('block').addClass('none');
+    menu.removeClass('block').addClass('none');
+ });   
+//清空并重现入口
+$('.storeClose').click(function(){
+    $(this).removeClass('block').addClass('none');
+        $('.store1').addClass('block').removeClass('none');
+       $("#storeHome").removeClass('block').removeClass('roll-f2').addClass('roll-f').addClass('none');
+        $('.storeList').removeClass('none');
+       $('#storeHome').children('.home').remove();
+        logoLeft.removeClass('none').addClass('block');
+        logoRight.removeClass('none').addClass('block');
+        menu.removeClass('none').addClass('block');
+        $('#divselect3').children('cite').attr('data-url','');
+    });
+
+ //异步请求关键代码
+function storeGetFile(){
+    $('#storeHome').children('.home').remove();
+    $.ajax({
+       type: "GET",
+       url: $('#divselect3').children('cite').attr('data-url'),
+       dataType: "json",
+       success: function(date){
+         console.log( "Data Saved: " + date);
+             for (var len = date.length-1, i = len; i >=0 ; i--) {
+                 var sup=$('<div>')
+                 .addClass('home none')
+                 .attr('index',i)
+                 .prependTo('#storeHome');
+                 var sub=$('<div>')
+                 .addClass('homeImg')
+                 .prependTo(sup);
+                 var img=$('<img>')
+                 .attr('src',date[i])
+                 .appendTo(sub);
+            };
+            $('#storeHome').children('.home').eq(0).removeClass('none').addClass('block');
+            $('#storeHome>.slider-nu>.storePrev').unbind('click');
+            $('#storeHome>.slider-nu>.storeNext').unbind('click');
+            full3DSlider(' ','#storeHome>.home','#storeHome>.slider-an',true,false,'#storeHome>.slider-nu>span');
+
+           },
+           err:function() {
+                console.log( "出错啦~~~~" );
+           }
+       })
+}
+$('#videoOn').click(function () {
+    $('video').get(0).play();
+    console.log('videoOn');
+    $('#videPlay>video').attr('width',(W-200)+'px');
+    $('#videPlay').removeClass('none').addClass('block');
+    logoLeft.removeClass('block').addClass('none');
+    logoRight.removeClass('block').addClass('none');
+    menu.removeClass('block').addClass('none');
+    maskBool = true;
+})
+$('#videPlay>.videoClose').click(function () {
+    $('video').get(0).pause();
+    console.log('videoClose');
+    $('#videPlay').removeClass('block').addClass('none');
+    logoLeft.removeClass('none').addClass('block');
+        logoRight.removeClass('none').addClass('block');
+        menu.removeClass('none').addClass('block');
+        maskBool = false;
+})
+});

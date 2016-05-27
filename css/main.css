@@ -1,0 +1,132 @@
+#loading {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 100000;
+    }
+    
+    .loadContent {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate3D(-50%, -50%, 0);
+                transform: translate3D(-50%, -50%, 0);
+    }
+    
+    .loadLogo {
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .loadLogoImgMask {
+        position: absolute;
+        overflow: hidden;
+        left: 0;
+        height: 68%;
+        width: 100%;
+        background: rgba(255,255,255,.5);
+    }
+    
+    .loadEnter {
+        color: #d05d3f;
+        font-size: 16px;
+        text-align: center;
+        margin: 20px 60px;
+        padding: 20px;
+        border: 2px solid transparent;
+        visibility: hidden;
+    }
+    
+    .loadEnter:hover {
+        border: 2px solid #d05d3f;
+        cursor: pointer;
+
+    }
+    .bubble-container{
+        position: absolute;
+        overflow: hidden;
+        background:#f1f6f6;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    .icon {
+        position: absolute;
+        display: block;
+    }
+    .icon1 {
+        background: url(../images/icon1.png) no-repeat;
+        -webkit-animation: rotateAni1 5s ease-in infinite;
+                animation: rotateAni1 5s ease-in infinite;
+    }
+    
+    .icon2 {
+        background: url(../images/icon2.png) no-repeat;
+        -webkit-animation: rotateAni1 5s ease-in infinite;
+                animation: rotateAni1 5s ease-in infinite;   
+    }
+    
+    .icon3 {
+        background: url(../images/icon3.png) no-repeat;
+        -webkit-animation: rotateAni1 5s ease-in infinite;
+                animation: rotateAni1 5s ease-in infinite;
+    }
+
+    .icon4 {
+        background: url(../images/icon4.png) no-repeat;
+        -webkit-animation: rotateAni1 5s ease-in infinite;
+                animation: rotateAni1 5s ease-in infinite;
+    }
+
+    .icon5 {
+        background: url(../images/icon5.png) no-repeat;
+        -webkit-animation: rotateAni1 5s ease-in infinite;
+                animation: rotateAni1 5s ease-in infinite;
+    }
+    
+    @-webkit-keyframes rotateAni1 {
+        0% {
+            -webkit-transform: rotate(0deg);
+                    transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(720deg);
+                    transform: rotate(720deg);
+        }
+    }
+    
+    @keyframes rotateAni1 {
+        0% {
+            -webkit-transform: rotate(0deg);
+                    transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(720deg);
+                    transform: rotate(720deg);
+        }
+    }
+    
+    @-webkit-keyframes rotateAni2 {
+        0% {
+            -webkit-transform: rotate(0deg);
+                    transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(-720deg);
+                    transform: rotate(-720deg);
+        }
+    }
+    
+    @keyframes rotateAni2 {
+        0% {
+            -webkit-transform: rotate(0deg);
+                    transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(-720deg);
+                    transform: rotate(-720deg);
+        }
+    }
+    
