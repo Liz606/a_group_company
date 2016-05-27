@@ -71,6 +71,12 @@ a, a:visited, a:focus, a:hover {
 .none{
     display: none!important;
 }
+.visible{
+    visibility: visible!important;
+}
+.hidden{
+    visibility: hidden!important;
+}
 .Liz-scroll {
     margin-right: 20px;
     padding-right: 20px;

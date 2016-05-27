@@ -1,0 +1,178 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>index</title>
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/main.css">
+	<style>
+    .loadTitle{
+        font-size: 24px;
+    }
+    .loadSmall{
+        padding: 10px;
+        font-size: 12px;
+    }
+    .loadBrands{
+        margin: 60px auto;
+    }
+    .loadBrands li{
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+    }
+    .loadBrands li img{
+        -webkit-animation: scaleAni 1.3s ease-in;
+        -o-animation: scaleAni 1.3s ease-in;
+        animation: scaleAni 1.3s ease-in;
+    }
+    .smallP{
+        padding: 10px;
+        visibility: hidden;
+    }
+    .loadBrands li:hover .smallP{
+        visibility: visible;
+    }
+    .mianloadEnter{
+        color: #d05d3f;
+        width: 92px;
+        font-size: 16px;
+        text-align: center;
+        padding: 20px;
+        border: 2px solid transparent;
+        visibility: hidden;
+    }
+    .mianloadEnter:hover {
+        border: 2px solid #d05d3f;
+        cursor: pointer;
+
+    }
+    @keyframes scaleAni{
+        0%{
+            transform:scale(0.01);
+            }80%{
+                transform:scale(1.2);
+                }100%{
+                    transform:scale(1);
+                }
+    }
+    </style>
+</head>
+<body>
+    <div id="loading" class="block">
+        <div class="cm" style="text-align: center; width: 100%;">
+            <p class="loadTitle">专业女裤供应平台/您的需求我能满足</p>
+            <p class="loadSmall">多品牌，多风格，多元化合作模式供您选择</p>
+            <ul class="loadBrands">
+                <li>
+                    <a href="index.html"><img src="images/mianlogo1.png" alt=""></a>
+                    <p>·万之冠·</p>
+                    <p class="smallP">潮而不贵/专注打底裤/塑形.美体.舒适</p>
+                </li>
+                <li>
+                    <a href="index.html"><img src="images/mianlogo2.png" alt=""></a>
+                    <p>·万之冠·</p>
+                    <p class="smallP">潮而不贵/专注打底裤/塑形.美体.舒适</p>
+                </li>
+                <li>
+                    <a href="index.html"><img src="images/mianlogo3.png" alt=""></a>
+                    <p>·万之冠·</p>
+                    <p class="smallP">潮而不贵/专注打底裤/塑形.美体.舒适</p>
+                </li>
+                <li>
+                    <a href="index.html"><img src="images/mianlogo4.png" alt=""></a>
+                    <p>·万之冠·</p>
+                    <p class="smallP">潮而不贵/专注打底裤/塑形.美体.舒适</p>
+                </li>
+                <li>
+                    <a href="index.html"><img src="images/mianlogo5.png" alt=""></a>
+                    <p>·万之冠·</p>
+                    <p class="smallP">潮而不贵/专注打底裤/塑形.美体.舒适</p>
+                </li>
+            </ul>
+            <a href="index.html">
+                <img src="images/mianlogo.png" alt="" style="margin-bottom:20px;" >
+            </a>
+            <a href="index.html">
+                <div class="mianloadEnter center" style="visibility: visible;">
+                    ENTER
+                </div>
+            </a>
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+	<script>
+ if (typeof window.requestAnimationFrame === 'undefined') {
+        window.requestAnimationFrame = (function() {
+            return window.requestAnimationFrame ||
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                function(callback) {
+                    window.setTimeout(callback, 1000 / 60);
+                };
+        })();
+    }
+    setTimeout(Bubbles, 10);
+
+    function Bubbles() {
+        var height = document.body.offsetHeight,
+            width = document.body.offsetWidth;
+        var bubbles = [];
+        var amount = 4;
+        var styleSource = ["icon5", "icon4", "icon3", "icon2", "icon1"];
+        var cont = document.createElement('div');
+        cont.className = 'bubble-container';
+        var div = document.createElement('div');
+        div.innerHTML = "<svg version='1.1' xmlns='http://www.w3.org/2000/svg' height='0' width='0'><defs><filter id='blur' x='0' y='0'><feGaussianBlur stdDeviation='3'/></filter></defs></svg>";
+        cont.appendChild(div);
+        setup();
+        setup();
+        setup();
+        setup();
+        setup();
+        document.body.appendChild(cont);
+        run();
+
+
+        function setup() {
+            for (var i = 0; i < amount; i++) {
+                var bubble = {
+                    element: document.createElement('div'),
+                    x: Math.random() * document.body.clientWidth,
+                    y: Math.random() * document.body.clientHeight,
+                    vx: Math.random() * 2 - 1,
+                    vy: Math.random() * 2 * -1,
+                    size: 31
+                };
+                bubble.element.className = 'icon ' + styleSource[Math.round(Math.random() * 5)];
+                bubble.element.style.height = bubble.element.style.width = bubble.size + 'px';
+                bubbles.push(bubble);
+                cont.appendChild(bubble.element);
+            }
+        }
+
+        function run() {
+
+            for (var i = 0; i < amount * 5; i++) {
+                var bubble = bubbles[i];
+                bubble.x += bubble.vx;
+                bubble.y += bubble.vy;
+                if (bubble.x - bubble.size > width) {
+                    bubble.x = 0 - bubble.size;
+                }
+                if (bubble.x + bubble.size < 0) {
+                    bubble.x = bubble.size + width;
+                }
+                if (bubble.y + bubble.size < 0) {
+                    bubble.y = bubble.size + height;
+                }
+                bubble.element.style.left = bubble.x + 'px';
+                bubble.element.style.top = bubble.y + 'px';
+            }
+            requestAnimationFrame(run);
+        }
+
+    }
+    </script>
+</body>
+</html>
