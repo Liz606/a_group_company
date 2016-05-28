@@ -91,7 +91,9 @@
                  };
                 $('#lookOnly').attr('src',thisSrc);
             }else{
-                if (Children.filter('.currtBigLook').attr('index')==0) {return};
+                if (Children.filter('.currtBigLook').attr('index')==0) {
+                    dg_nextArr1.addClass('disable');
+                    slidstate=false;return};
                 var prv=Children.filter('.currtBigLook').removeClass('currtBigLook');
                 var now=prv.prev();
                 now.addClass('currtBigLook');
@@ -138,7 +140,9 @@
                      };
                     $('#lookOnly').attr('src',thisSrc);
                 }else{
-                    if (Children.filter('.currtBigLook').attr('index')==_const-1) {return};
+                    if (Children.filter('.currtBigLook').attr('index')==_const-1) {
+                        dg_prevArr1.addClass('disable');
+                        slidstate=false;return};
                     var nex=Children.filter('.currtBigLook').removeClass('currtBigLook');
                     var now=nex.next();
                     now.addClass('currtBigLook');
