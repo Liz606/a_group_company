@@ -100,6 +100,7 @@
                 var now=prv.prev();
                 now.addClass('currtBigLook');
                 if (now.attr('index')==0) {
+                    prv.addClass('.currtBigLook');
                     dg_nextArr1.addClass('disable');
                 };
                 var thisSrc=now.attr('data-bigurl');
@@ -151,6 +152,7 @@
                     var now=nex.next();
                     now.addClass('currtBigLook');
                      if (now.attr('index')==_const-1) {
+                        nex.addClass('.currtBigLook');
                         dg_prevArr1.addClass('disable');
                     };
                     var thisSrc=now.attr('data-bigurl');
