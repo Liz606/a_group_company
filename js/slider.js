@@ -34,9 +34,9 @@
              lookOnly.src=thisSrc;
              lookOnly.onload = function (){
                  $('#loadLook').removeClass('block').addClass('none');
+                 $('#lookOnly').attr('src',thisSrc);
                  $('#lookOnly').removeClass('none').addClass('block');
              };
-            $('#lookOnly').attr('src',thisSrc);
             animated=false;
             slidstate=false;
             logoLeft.removeClass('block').addClass('none');
@@ -87,9 +87,9 @@
                  lookOnly.src=thisSrc;
                  lookOnly.onload = function (){
                      $('#loadLook').removeClass('block').addClass('none');
+                     $('#lookOnly').attr('src',thisSrc);
                      $('#lookOnly').removeClass('none').addClass('block');
                  };
-                $('#lookOnly').attr('src',thisSrc);
             }else{
                 if (Children.filter('.currtBigLook').attr('index')==0) {
                     dg_nextArr1.addClass('disable');
@@ -106,9 +106,9 @@
                  lookOnly.src=thisSrc;
                  lookOnly.onload = function (){
                      $('#loadLook').removeClass('block').addClass('none');
+                     $('#lookOnly').attr('src',thisSrc);
                      $('#lookOnly').removeClass('none').addClass('block');
                  };
-                $('#lookOnly').attr('src',thisSrc);
             }
             slidstate=false;
         };
@@ -136,9 +136,9 @@
                      lookOnly.src=thisSrc;
                      lookOnly.onload = function (){
                          $('#loadLook').removeClass('block').addClass('none');
+                         $('#lookOnly').attr('src',thisSrc);
                          $('#lookOnly').removeClass('none').addClass('block');
                      };
-                    $('#lookOnly').attr('src',thisSrc);
                 }else{
                     if (Children.filter('.currtBigLook').attr('index')==_const-1) {
                         dg_prevArr1.addClass('disable');
@@ -155,9 +155,9 @@
                      lookOnly.src=thisSrc;
                      lookOnly.onload = function (){
                          $('#loadLook').removeClass('block').addClass('none');
+                            $('#lookOnly').attr('src',thisSrc);
                          $('#lookOnly').removeClass('none').addClass('block');
                      };
-                    $('#lookOnly').attr('src',thisSrc);
                 }
                 slidstate=false;
             };
