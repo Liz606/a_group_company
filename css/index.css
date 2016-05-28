@@ -825,14 +825,14 @@
 	    top: 0;
 	}
 	#lookOnly {
-	    max-width: none;
+	    max-width:  90%;
     	max-height: 85%;
 	}
 	
 	.maskX {
 	    position: absolute;
         top: 40px;
-    	right:80px;
+    	right:40px;
 	    cursor: pointer;
 	}
 	/**
