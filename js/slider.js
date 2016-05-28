@@ -28,6 +28,7 @@
         $(this).click(function(){
             $('#blackMaskAll').removeClass('none').addClass('block');
             $(this).addClass('currtBigLook');
+            $('#lookOnly').removeClass('block').addClass('none');
             $('#loadLook').removeClass('none').addClass('block');
             var thisSrc=$(this).attr('data-bigurl');
             var lookOnly=new Image();
@@ -82,6 +83,7 @@
                 var now=prv.prev();
                 var thisSrc=now.attr('data-bigurl');
                 now.addClass('currtBigLook');
+                $('#lookOnly').removeClass('block').addClass('none');
                  $('#loadLook').removeClass('none').addClass('block');
                 var lookOnly=new Image();
                  lookOnly.src=thisSrc;
@@ -101,6 +103,7 @@
                     dg_nextArr1.addClass('disable');
                 };
                 var thisSrc=now.attr('data-bigurl');
+                $('#lookOnly').removeClass('block').addClass('none');
                  $('#loadLook').removeClass('none').addClass('block');
                 var lookOnly=new Image();
                  lookOnly.src=thisSrc;
@@ -131,6 +134,7 @@
                     var now=nex.next();
                     now.addClass('currtBigLook');
                      var thisSrc=now.attr('data-bigurl');
+                     $('#lookOnly').removeClass('block').addClass('none');
                       $('#loadLook').removeClass('none').addClass('block');
                     var lookOnly=new Image();
                      lookOnly.src=thisSrc;
@@ -150,6 +154,7 @@
                         dg_prevArr1.addClass('disable');
                     };
                     var thisSrc=now.attr('data-bigurl');
+                     $('#lookOnly').removeClass('block').addClass('none');
                     $('#loadLook').removeClass('none').addClass('block');
                     var lookOnly=new Image();
                      lookOnly.src=thisSrc;
