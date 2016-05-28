@@ -73,8 +73,10 @@ jQuery(function($) {
             menuBefore.removeClass('block').addClass('none');
             if (toId=='#product') {
                 toId='#lookbook';
+                $('#divselect4 ul li a').eq(0).click();
+            }else if (toId=='#lookbook') {
                 $('#divselect4 ul li a').eq(1).click();
-            };
+             }
              $("body,html").animate({ scrollTop:$(toId).offset().top}, 1000, function () {
                             $('#home>.box-cont>.home').trigger('3Drunstate');
                             $('#storeHome>.home').trigger('3Drunstate');

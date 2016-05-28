@@ -2,40 +2,40 @@
     var logoLeft=$('.logoLeft');
     var logoRight=$('.logoRight');
     var menu=$('.menu');
-	var animated = false;
+    var animated = false;
     var slidstate=true;
     var autoState=true;
-	var timer;
+    var timer;
     var _const=$(_super).children().length;
     var point=4;
-	var index = 0; //记录点击
+    var index = 0; //记录点击
     var dg_nextArr=$(_super).parent().children().filter('.dg-nextArr');
     var dg_prevArr=$(_super).parent().children().filter('.dg-prevArr');
     var dg_nextArr1=$(_super).parent().parent().children().filter('.blackMaskAll').children().filter('.dg-nextArr');
     var dg_prevArr1=$(_super).parent().parent().children().filter('.blackMaskAll').children().filter('.dg-prevArr');
-	var sliderWidth=parseInt(W/4);
-    //将轮播图最后一个移动到第一个
-    var superlast=$(_super).children().last().clone().remove();
-    $(_super).children().last().remove();
-    $(_super).prepend(superlast);
+    var sliderWidth=parseInt(W/4);
 
-	var Children = $(_super).children();
+    var Children = $(_super).children();
     var p=1;//错位个数
-	var start={},
-		current={};
+    var start={},
+        current={};
     //动态设置滚动元素的宽度，left和index编号
     $.each(Children,function(i){
          $(this).attr({'width':(sliderWidth + 'px'),'index':(i)});
-         $(this).css('left',($(this).attr('index')-1)*sliderWidth + 'px');
+         $(this).css('left',($(this).attr('index'))*sliderWidth + 'px');
          $(this).attr({'index':i});
-         if (i==0) {
-           $(this).attr('index',_const); 
-         };
         //$(this).html($(this).attr('index'));//输出当前页号
         $(this).click(function(){
             $('#blackMaskAll').removeClass('none').addClass('block');
             $(this).addClass('currtBigLook');
+            $('#loadLook').removeClass('none').addClass('block');
             var thisSrc=$(this).attr('data-bigurl');
+            var lookOnly=new Image();
+             lookOnly.src=thisSrc;
+             lookOnly.onload = function (){
+                 $('#loadLook').removeClass('block').addClass('none');
+                 $('#lookOnly').removeClass('none').addClass('block');
+             };
             $('#lookOnly').attr('src',thisSrc);
             animated=false;
             slidstate=false;
@@ -45,19 +45,20 @@
             maskBool = true;
         });
     })
-	
+    
     $(_super).on('touchstart','',pageStart);
     $(_super).on('touchmove','',pageMove);
     $(_super).on('touchend','',pageEnd);
     $(_super).bind('runstate','',runState);   
     $(_super).bind('stopstate','',stopState); 
 
-    //$(_super).on('click','',nextClick);  
+  
     dg_nextArr.on('click','',nextClick);
     dg_prevArr.on('click','',prevClick);
     
     dg_nextArr1.on('click','',nextClick);
     dg_prevArr1.on('click','',prevClick);
+
     autoPlay(sliderWidth);
     function runState() {
         animated=false;
@@ -78,16 +79,33 @@
             slidstate=true;
             if (Arrow_l(sliderWidth)) {
                 var prv=Children.filter('.currtBigLook').removeClass('currtBigLook');
-                var now;
-                if (prv.attr('index')==_const) {
-                    now=Children.last();
-                }else{
-                    now=prv.prev();
-                }
-
+                var now=prv.prev();
                 var thisSrc=now.attr('data-bigurl');
-
                 now.addClass('currtBigLook');
+                 $('#loadLook').removeClass('none').addClass('block');
+                var lookOnly=new Image();
+                 lookOnly.src=thisSrc;
+                 lookOnly.onload = function (){
+                     $('#loadLook').removeClass('block').addClass('none');
+                     $('#lookOnly').removeClass('none').addClass('block');
+                 };
+                $('#lookOnly').attr('src',thisSrc);
+            }else{
+                if (Children.filter('.currtBigLook').attr('index')==0) {return};
+                var prv=Children.filter('.currtBigLook').removeClass('currtBigLook');
+                var now=prv.prev();
+                now.addClass('currtBigLook');
+                if (now.attr('index')==0) {
+                    dg_nextArr1.addClass('disable');
+                };
+                var thisSrc=now.attr('data-bigurl');
+                 $('#loadLook').removeClass('none').addClass('block');
+                var lookOnly=new Image();
+                 lookOnly.src=thisSrc;
+                 lookOnly.onload = function (){
+                     $('#loadLook').removeClass('block').addClass('none');
+                     $('#lookOnly').removeClass('none').addClass('block');
+                 };
                 $('#lookOnly').attr('src',thisSrc);
             }
             slidstate=false;
@@ -104,23 +122,42 @@
         if (!animated&&slidstate) {
            Arrow_r(sliderWidth);
         }else if (!animated&&!slidstate) {
-            slidstate=true;
-            if (Arrow_r(sliderWidth)) {
-            console.log('hellonext');
-            var nex=Children.filter('.currtBigLook').removeClass('currtBigLook');
-            var now=null;
-            if (nex.attr('index')==13) {
-                now=Children.first();
-            }else{
-                now=nex.next();
-            }
-            now.addClass('currtBigLook');
-             var thisSrc=now.attr('data-bigurl');
-            $('#lookOnly').attr('src',thisSrc);
+                slidstate=true;
+                if (Arrow_r(sliderWidth)) {
+                    console.log('hellonext');
+                    var nex=Children.filter('.currtBigLook').removeClass('currtBigLook');
+                    var now=nex.next();
+                    now.addClass('currtBigLook');
+                     var thisSrc=now.attr('data-bigurl');
+                      $('#loadLook').removeClass('none').addClass('block');
+                    var lookOnly=new Image();
+                     lookOnly.src=thisSrc;
+                     lookOnly.onload = function (){
+                         $('#loadLook').removeClass('block').addClass('none');
+                         $('#lookOnly').removeClass('none').addClass('block');
+                     };
+                    $('#lookOnly').attr('src',thisSrc);
+                }else{
+                    if (Children.filter('.currtBigLook').attr('index')==_const-1) {return};
+                    var nex=Children.filter('.currtBigLook').removeClass('currtBigLook');
+                    var now=nex.next();
+                    now.addClass('currtBigLook');
+                     if (now.attr('index')==_const-1) {
+                        dg_prevArr1.addClass('disable');
+                    };
+                    var thisSrc=now.attr('data-bigurl');
+                    $('#loadLook').removeClass('none').addClass('block');
+                    var lookOnly=new Image();
+                     lookOnly.src=thisSrc;
+                     lookOnly.onload = function (){
+                         $('#loadLook').removeClass('block').addClass('none');
+                         $('#lookOnly').removeClass('none').addClass('block');
+                     };
+                    $('#lookOnly').attr('src',thisSrc);
+                }
+                slidstate=false;
             };
-            slidstate=false;
-            };
-             dg_nextArr.removeClass('disable');
+            dg_nextArr.removeClass('disable');
             dg_nextArr1.removeClass('disable');
     }
     //pageMove
@@ -228,10 +265,8 @@
             left = leftCorrt + wid;
             if ($(this).attr('index')==Children.eq(Children.length-4).attr('index')&&left==0) {
                 dg_prevArr.addClass('disable');
-                dg_prevArr1.addClass('disable');
             }else  if ($(this).attr('index')==Children.eq(0).attr('index')&&left==0) {
                 dg_nextArr.addClass('disable');
-                dg_nextArr1.addClass('disable');
             };  
             //移动
             $(this).animate({left:left},{quequ:false,complete:function(){
