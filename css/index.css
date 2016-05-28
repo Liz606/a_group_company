@@ -832,7 +832,7 @@
 	.maskX {
 	    position: absolute;
         top: 40px;
-    	right:80px;
+    	right:40px;
 	    cursor: pointer;
 	}
 	/**
