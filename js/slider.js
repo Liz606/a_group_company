@@ -28,15 +28,16 @@
         $(this).click(function(){
             $('#blackMaskAll').removeClass('none').addClass('block');
             $(this).addClass('currtBigLook');
+            $('#lookOnly').removeClass('block').addClass('none');
             $('#loadLook').removeClass('none').addClass('block');
             var thisSrc=$(this).attr('data-bigurl');
             var lookOnly=new Image();
              lookOnly.src=thisSrc;
              lookOnly.onload = function (){
                  $('#loadLook').removeClass('block').addClass('none');
+                 $('#lookOnly').attr('src',thisSrc);
                  $('#lookOnly').removeClass('none').addClass('block');
              };
-            $('#lookOnly').attr('src',thisSrc);
             animated=false;
             slidstate=false;
             logoLeft.removeClass('block').addClass('none');
@@ -82,14 +83,15 @@
                 var now=prv.prev();
                 var thisSrc=now.attr('data-bigurl');
                 now.addClass('currtBigLook');
+                $('#lookOnly').removeClass('block').addClass('none');
                  $('#loadLook').removeClass('none').addClass('block');
                 var lookOnly=new Image();
                  lookOnly.src=thisSrc;
                  lookOnly.onload = function (){
                      $('#loadLook').removeClass('block').addClass('none');
+                     $('#lookOnly').attr('src',thisSrc);
                      $('#lookOnly').removeClass('none').addClass('block');
                  };
-                $('#lookOnly').attr('src',thisSrc);
             }else{
                 if (Children.filter('.currtBigLook').attr('index')==0) {
                     dg_nextArr1.addClass('disable');
@@ -101,14 +103,15 @@
                     dg_nextArr1.addClass('disable');
                 };
                 var thisSrc=now.attr('data-bigurl');
+                $('#lookOnly').removeClass('block').addClass('none');
                  $('#loadLook').removeClass('none').addClass('block');
                 var lookOnly=new Image();
                  lookOnly.src=thisSrc;
                  lookOnly.onload = function (){
                      $('#loadLook').removeClass('block').addClass('none');
+                     $('#lookOnly').attr('src',thisSrc);
                      $('#lookOnly').removeClass('none').addClass('block');
                  };
-                $('#lookOnly').attr('src',thisSrc);
             }
             slidstate=false;
         };
@@ -131,14 +134,15 @@
                     var now=nex.next();
                     now.addClass('currtBigLook');
                      var thisSrc=now.attr('data-bigurl');
+                     $('#lookOnly').removeClass('block').addClass('none');
                       $('#loadLook').removeClass('none').addClass('block');
                     var lookOnly=new Image();
                      lookOnly.src=thisSrc;
                      lookOnly.onload = function (){
                          $('#loadLook').removeClass('block').addClass('none');
+                         $('#lookOnly').attr('src',thisSrc);
                          $('#lookOnly').removeClass('none').addClass('block');
                      };
-                    $('#lookOnly').attr('src',thisSrc);
                 }else{
                     if (Children.filter('.currtBigLook').attr('index')==_const-1) {
                         dg_prevArr1.addClass('disable');
@@ -150,14 +154,15 @@
                         dg_prevArr1.addClass('disable');
                     };
                     var thisSrc=now.attr('data-bigurl');
+                     $('#lookOnly').removeClass('block').addClass('none');
                     $('#loadLook').removeClass('none').addClass('block');
                     var lookOnly=new Image();
                      lookOnly.src=thisSrc;
                      lookOnly.onload = function (){
                          $('#loadLook').removeClass('block').addClass('none');
+                            $('#lookOnly').attr('src',thisSrc);
                          $('#lookOnly').removeClass('none').addClass('block');
                      };
-                    $('#lookOnly').attr('src',thisSrc);
                 }
                 slidstate=false;
             };
