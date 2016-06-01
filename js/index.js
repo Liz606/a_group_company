@@ -30,7 +30,9 @@ jQuery(function($) {
                 W=$(window).width();
                 lookInit();
                 mousNow = 0;
-            };
+        };
+        $('#home>.box-cont').full3DSlider(true,true);
+        $('#storeHome').full3DSlider(false,false);
     })
     /*菜单展开和遮罩*/
     var menuNav=$('.menuNav');
@@ -43,24 +45,24 @@ jQuery(function($) {
             menuBefore.removeClass('block').addClass('none');
             $('#home>.box-cont>.home').trigger('3Drunstate');
             $('#storeHome>.home').trigger('3Drunstate');
-            $('#slider').children('ul').trigger('runstate');
+            $('#slider').children().filter('block').trigger('runstate');
             maskBool = false;
         }else{
             menuNav.removeClass('none').addClass('navshow block');
             menuBefore.removeClass('none').addClass('block');
             $('#home>.box-cont>.home').trigger('3Dstopstate');
             $('#storeHome>.home').trigger('3Dstopstate');
-            $('#slider').children('ul').trigger('stopstate');
+            $('#slider').children().filter('block').trigger('stopstate');
             maskBool = true;
         }
     });
     $('.Close').click(function(){
-        console.log('close!!!');
+        //console.log('close!!!');
         menuNav.removeClass('navshow block').addClass('none');
         menuBefore.removeClass('block').addClass('none');
         $('#home>.box-cont>.home').trigger('3Drunstate');
         $('#storeHome>.home').trigger('3Drunstate');
-        $('#slider').children('ul').trigger('runstate');
+        $('#slider').children().filter('block').trigger('runstate');
         maskBool = false;
     })
     var navList=$('.navBox .nav li a');
@@ -80,7 +82,7 @@ jQuery(function($) {
              $("body,html").animate({ scrollTop:$(toId).offset().top}, 1000, function () {
                             $('#home>.box-cont>.home').trigger('3Drunstate');
                             $('#storeHome>.home').trigger('3Drunstate');
-                            $('#slider').children('ul').trigger('runstate');
+                            $('#slider').children().filter('block').trigger('runstate');
                             maskBool = false;
                         });
         })
@@ -102,7 +104,7 @@ jQuery(function($) {
 
 function lookInit() {
     //自定义事件监听，运行状态
-    init($('#sliderBox1_1'),W);
+    $('#sliderBox1_1').initLizSlider(W);
 
     var brandSelect=$('#divselect4 cite');
     
@@ -112,7 +114,7 @@ function lookInit() {
     $.each(lookList,function(){//当looklist被点击，显示对应slider
         var that=this;
         $(that).click(function(){
-            console.log('ajax'+$(that));
+            //console.log('ajax'+$(that));
            
             $.each(lookList,function(){
                 $(this).removeClass('active');
@@ -123,14 +125,18 @@ function lookInit() {
             sliderBox=brandSelect.attr('selectid')+'_'+lookListValue; 
             runningBox='#sliderBox'+sliderBox;
             constIndex=$(runningBox).children().length;
-            console.log(sliderBox,constIndex);
-             lookGetFile(runningBox);
+            //console.log(sliderBox,constIndex);
+            //lookbookImgsList.filter('.block').children().remove();
+            lookGetFile(runningBox);
 
             $.each(lookbookImgsList,function(){
-                $(this).removeClass('block').addClass('none').trigger('stopstate');
+                $(this).removeClass('block').addClass('none');
+                $(this).trigger('stopstate');
             })
-            $(runningBox).removeClass('none').addClass('block').trigger('runstate');
-            
+            $(runningBox).removeClass('none').addClass('block');
+            $(runningBox).trigger('runstate');
+            $(runningBox).trigger('resetarr');
+            //重新绑定
         })
     })
     $("#divselect4 cite").click(function(){//当lookbook select被点击，显示 opations
@@ -155,13 +161,17 @@ function lookInit() {
         }else{
             $('.brandIcon').attr('src','images/product.png');
         }
-        $.each(lookbookImgsList,function(){
-            $(this).removeClass('block').addClass('none').trigger('stopstate');
-        })
         runningBox='#sliderBox'+sliderBox;
-        
+        //lookbookImgsList.filter('.block').children().remove();
         lookGetFile(runningBox);
-        $(runningBox).removeClass('none').addClass('block').trigger('runstate');
+
+        $.each(lookbookImgsList,function(){
+            $(this).removeClass('block').addClass('none');
+            $(this).trigger('stopstate');
+        })
+        $(runningBox).removeClass('none').addClass('block');
+        $(runningBox).trigger('runstate');
+        $(runningBox).trigger('resetarr');
     });
 
     for (var i = 1; i < 5; i++) {
@@ -173,8 +183,8 @@ function lookInit() {
    
     //lookbook的遮罩关闭按钮
     $('#maskX').click(function(){
-        nowslider=$('#slider').children().filter('.lookbookImgs').filter('.block');
-        $('#slider').children().filter('.lookbookImgs').filter('.block').children().filter('.currtBigLook').removeClass('currtBigLook');
+        nowslider=$('#slider').children().filter('.block');
+        nowslider.children().filter('.currtBigLook').removeClass('currtBigLook');
         nowslider.trigger('runstate');
         $('#blackMaskAll').removeClass('block').addClass('none');
         logoLeft.removeClass('none').addClass('block');
@@ -190,7 +200,7 @@ function lookInit() {
                    url: $(runningBox).data('url'),
                    dataType: "json",
                    success: function(date){
-                     console.log( "Data Saved: " + date);
+                     //console.log( "Data Saved: " + date);
                      var small=date.small;
                      var big=date.big;
                          for (var i = 0,len = small.length; i < len; i++) {
@@ -199,10 +209,10 @@ function lookInit() {
                              .attr('data-bigurl',big[i])
                              .appendTo($(runningBox));
                         };
-                        init($(runningBox),W);
+                        $(runningBox).initLizSlider(W);
                        },
-                       err:function() {
-                            console.log( "出错啦~~~~" );
+                       error:function() {
+                            //console.log( "出错啦~~~~" );
                        }
                    })
             }
@@ -302,7 +312,7 @@ function storeGetFile(){
        url: $('#divselect3').children('cite').attr('data-url'),
        dataType: "json",
        success: function(date){
-         console.log( "Data Saved: " + date);
+         //console.log( "Data Saved: " + date);
              for (var len = date.length-1, i = len; i >=0 ; i--) {
                  var sup=$('<div>')
                  .addClass('home none')
@@ -316,19 +326,17 @@ function storeGetFile(){
                  .appendTo(sub);
             };
             $('#storeHome').children('.home').eq(0).removeClass('none').addClass('block');
-            $('#storeHome>.slider-nu>.storePrev').unbind('click');
-            $('#storeHome>.slider-nu>.storeNext').unbind('click');
-            full3DSlider(' ','#storeHome>.home','#storeHome>.slider-an',true,false,'#storeHome>.slider-nu>span');
+            $('#storeHome').trigger('reload');
 
            },
-           err:function() {
-                console.log( "出错啦~~~~" );
+           error:function() {
+                //console.log( "出错啦~~~~" );
            }
        })
 }
 $('#videoOn').click(function () {
     $('video').get(0).play();
-    console.log('videoOn');
+    //console.log('videoOn');
     $('#videPlay>video').attr('width',(W-200)+'px');
     $('#videPlay').removeClass('none').addClass('block');
     logoLeft.removeClass('block').addClass('none');
@@ -338,7 +346,7 @@ $('#videoOn').click(function () {
 })
 $('#videPlay>.videoClose').click(function () {
     $('video').get(0).pause();
-    console.log('videoClose');
+    //console.log('videoClose');
     $('#videPlay').removeClass('block').addClass('none');
     logoLeft.removeClass('none').addClass('block');
         logoRight.removeClass('none').addClass('block');
