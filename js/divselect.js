@@ -33,7 +33,7 @@
 						var citeArr=cite.split('-');// 1 ， 2
 						setA(citeArr);
 						function setA(arrfouse) {//选择了省自动更新市区···
-							console.log(divSelects.length);
+							//console.log(divSelects.length);
 							if (citeArr.length<=divSelects.length) {
 								for (var i = citeArr.length - 1; i > citeArr.length - 2; i--) {
 									citeArr.push('1');

@@ -18,7 +18,7 @@
         <div class="loadContent">
             <div class="loadLogo">
                 <div class="loadLogoImgMask"></div>
-                <img src="images/loadLogo.png" alt="">
+                <img  src="images/logoLeft.png" alt="">
             </div>
             <a href="#home">
                 <div class="loadEnter">
@@ -578,7 +578,7 @@ if (typeof window.requestAnimationFrame === 'undefined') {
                     y: Math.random() * document.body.clientHeight,
                     vx: Math.random() * 2 - 1,
                     vy: Math.random() * 2 * -1,
-                    size: 31
+                    size: 40
                 };
                 bubble.element.className = 'icon ' + styleSource[Math.round(Math.random() * 5)];
                 bubble.element.style.height = bubble.element.style.width = bubble.size + 'px';
@@ -638,12 +638,11 @@ if (typeof window.requestAnimationFrame === 'undefined') {
                     imgCorrt--;
                     left=(1-imgCorrt/imgLength)*100+'%';
                     num=Math.round((1-imgCorrt/imgLength)*100)+'%';
-                    console.log('图片加载完成'+left);
+                    //console.log('图片加载完成'+left);
                     $('.loadLogoImgMask').css('left',left);
                     $(".loadEnter").text(num);
                     if (!imgCorrt) {
-                        $(".loadEnter").text('ENTER');
-                        $(".loadEnter").addClass('loadEnterHover');
+                        $('.loadEnter').click();
                     };
                 },1000);
 

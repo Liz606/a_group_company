@@ -24,7 +24,7 @@
 	    position: absolute;
     	overflow: hidden;
     	left: 0;
-    	height: 68%;
+    	height: 100%;
     	width: 100%;
     	background: rgba(255,255,255,.5);
 	}
@@ -33,14 +33,9 @@
 	    color: #d05d3f;
 	    font-size: 16px;
 	    text-align: center;
-	    margin: 20px 60px;
+	    margin: 20px 0px;
 	    padding: 20px;
 	    border: 2px solid transparent;
-	}
-	
-	.loadEnterHover:hover {
-	    border: 2px solid #d05d3f;
-	    cursor: pointer;
 	}
 	
 	#container {
@@ -740,6 +735,7 @@
 	    z-index: 0;
 	    top: 0px;
 	    left: 0px;
+	    cursor: pointer;
 	}
 	
 	.lookTitlie {

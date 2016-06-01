@@ -1,7 +1,7 @@
 accorInit('.newsWrap');
 function accorInit(_sup) {
 	var sup=$(_sup);
-     var W=$(window).width();
+    var W=$(window).width();
 	var children=sup.children().filter('.new');
 	var dg_nextArr=sup.parent().children().filter('.dg-nextArr');
 	var dg_prevArr=sup.parent().children().filter('.dg-prevArr');
