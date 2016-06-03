@@ -13,16 +13,13 @@ html, body, p, h1, h2, h3, h4, a, hr, pre, ul, ol, li, a {
     box-sizing: border-box;
 }
 body {
-    font-size: 12px;
     overflow: hidden;
     overflow-y: auto;
 }
 body, html {
     height: 100%;
     width: 100%;
-    padding: 0;
-    margin: 0;
-    font-family:  "Microsoft Yahei", "微软雅黑",Arial;
+    font:12px 'Arial','Microsoft YaHei','tahoma','Hiragino Sans GB','\5b8b\4f53','sans-serif';
 }
 
 pre {
