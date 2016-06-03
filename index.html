@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>main</title>
-	<link rel="stylesheet" href="css/base.css">
-	<link rel="stylesheet" href="css/main.css">
-	<style>
+    <meta charset="utf-8">
+    <title>main</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
     .loadTitle{
         font-size: 24px;
     }
@@ -17,6 +17,7 @@
         margin: 60px auto;
     }
     .loadBrands li{
+        margin: 0 5%;
         display: inline-block;
         text-align: center;
         cursor: pointer;
@@ -29,6 +30,7 @@
     .smallP{
         padding: 10px;
         visibility: hidden;
+        position: absolute;
     }
     .loadBrands li:hover .smallP{
         visibility: visible;
@@ -66,28 +68,28 @@
             <ul class="loadBrands">
                 <li>
                     <a href="main.html"><img src="images/mianlogo1.png" alt=""></a>
-                    <p>·万之冠·</p>
-                    <p class="smallP">潮而不贵/专注打底裤/塑形.美体.舒适</p>
+                    <p>· 万之冠 ·</p>
+                    <p class="smallP" style="-webkit-transform:translateX(-40%);transform:translateX(-40%);">女裤万之冠，一生长相伴 / 大淑 . 舒适 . 优雅</p>
                 </li>
                 <li>
                     <a href="main.html"><img src="images/mianlogo2.png" alt=""></a>
-                    <p>·拉伊尔·</p>
-                    <p class="smallP">潮而不贵/专注打底裤/塑形.美体.舒适</p>
+                    <p>· 拉伊尔 ·</p>
+                    <p class="smallP" style="-webkit-transform:translateX(-37%);transform:translateX(-37%);">“潮”我看齐 / 中淑 . 高端 . 潮牌</p>
                 </li>
                 <li>
                     <a href="main.html"><img src="images/mianlogo3.png" alt=""></a>
-                    <p>·潮贵·</p>
-                    <p class="smallP">潮而不贵/专注打底裤/塑形.美体.舒适</p>
+                    <p>· 潮贵 ·</p>
+                    <p class="smallP" style="-webkit-transform:translateX(-40%);transform:translateX(-40%);">潮而不贵 / 专注打底裤 / 塑形 . 美体 . 舒适</p>
                 </li>
                 <li>
                     <a href="main.html"><img src="images/mianlogo4.png" alt=""></a>
-                    <p>·纳影·</p>
-                    <p class="smallP">潮而不贵/专注打底裤/塑形.美体.舒适</p>
+                    <p>· 纳影 ·</p>
+                    <p class="smallP" style="-webkit-transform:translateX(-20%);transform:translateX(-20%);">少中淑 . 高性价比</p>
                 </li>
                 <li>
                     <a href="main.html"><img src="images/mianlogo5.png" alt=""></a>
-                    <p>·奢迪·</p>
-                    <p class="smallP">潮而不贵/专注打底裤/塑形.美体.舒适</p>
+                    <p>· 奢迪 ·</p>
+                    <p class="smallP" style="-webkit-transform:translateX(-35%);transform:translateX(-35%);">低调的奢华 / 大中淑 . 商场专供 . 高端</p>
                 </li>
             </ul>
             <a href="main.html">
@@ -101,7 +103,7 @@
         </div>
     </div>
     <script src="js/jquery.min.js"></script>
-	<script>
+    <script>
  if (typeof window.requestAnimationFrame === 'undefined') {
         window.requestAnimationFrame = (function() {
             return window.requestAnimationFrame ||

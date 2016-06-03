@@ -335,14 +335,20 @@ function storeGetFile(){
        })
 }
 $('#videoOn').click(function () {
-    $('video').get(0).play();
-    //console.log('videoOn');
-    $('#videPlay>video').attr('width',(W-200)+'px');
-    $('#videPlay').removeClass('none').addClass('block');
-    logoLeft.removeClass('block').addClass('none');
-    logoRight.removeClass('block').addClass('none');
-    menu.removeClass('block').addClass('none');
-    maskBool = true;
+    if ($('#videPlay>video').length==0) {
+        var _url=$(this).attr('data-src');
+        var V=$('<video>').attr({'preload':'auto','poster':'images/videoImg1.png','controls':''}).addClass('cm');
+        var S=$('<source>').attr({'src':_url,'type':'video/mp4'});
+            V.appendTo($('#videPlay'));
+            S.appendTo(V);
+        };
+        $('#videPlay>video').get(0).play();
+        $('#videPlay>video').attr('width',(W-200)+'px');
+        $('#videPlay').removeClass('none').addClass('block');
+        logoLeft.removeClass('block').addClass('none');
+        logoRight.removeClass('block').addClass('none');
+        menu.removeClass('block').addClass('none');
+        maskBool = true;
 })
 $('#videPlay>.videoClose').click(function () {
     $('video').get(0).pause();
