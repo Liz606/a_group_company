@@ -114,7 +114,7 @@ function accorInit(_sup) {
 		 			$('#lookOnlyNew>.newTitleOpen').text(data.title);
 		 			$('#lookOnlyNew').next().text(data.title);
 		            $('#lookOnlyNew>.newDataOpen').text(data.date);
-		            $('#lookOnlyNew>.boxScorll').append(unescape(data.content));
+		            $('#lookOnlyNew>.boxScorll').html(unescape(data.content));
 		           },
 		           err:function() {
 		                console.log( "出错啦~~~~" );
